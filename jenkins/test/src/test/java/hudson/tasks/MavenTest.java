@@ -99,8 +99,7 @@ public class MavenTest {
         String mavenHome = maven.getHome();
         String mavenHomeVar = "${VAR_MAVEN}" + mavenHome.substring(3);
         String mavenVar = mavenHome.substring(0, 3);
-        MavenInstallation varMaven = new MavenInstallation("varMaven", mavenHomeVar, JenkinsRule.NO_PROPERTIES);
-        j.jenkins.getDescriptorByType(Maven.DescriptorImpl.class).setInstallations(maven, varMaven);
+        MavenInstallation varMaven = getVarMaven(maven, mavenHomeVar);
 
         JDK jdk = j.jenkins.getJDK("default");
         String javaHome = jdk.getHome();
@@ -123,13 +122,18 @@ public class MavenTest {
 
     }
 
+	private MavenInstallation getVarMaven(MavenInstallation maven, String mavenHomeVar) {
+		MavenInstallation varMaven = new MavenInstallation("varMaven", mavenHomeVar, JenkinsRule.NO_PROPERTIES);
+        j.jenkins.getDescriptorByType(Maven.DescriptorImpl.class).setInstallations(maven, varMaven);
+		return varMaven;
+	}
+
     @Test public void withParameter() throws Exception {
         MavenInstallation maven = j.configureDefaultMaven();
         String mavenHome = maven.getHome();
         String mavenHomeVar = "${VAR_MAVEN}" + mavenHome.substring(3);
         String mavenVar = mavenHome.substring(0, 3);
-        MavenInstallation varMaven = new MavenInstallation("varMaven",mavenHomeVar, JenkinsRule.NO_PROPERTIES);
-        j.jenkins.getDescriptorByType(Maven.DescriptorImpl.class).setInstallations(maven, varMaven);
+        MavenInstallation varMaven = getVarMaven(maven, mavenHomeVar);
 
         JDK jdk = j.jenkins.getJDK("default");
         String javaHome = jdk.getHome();
