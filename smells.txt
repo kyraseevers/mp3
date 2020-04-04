@@ -1,0 +1,17 @@
+MP3 - Code Smells
+
+1. Code Smell: Duplicated Code
+   Resolution: Extract duplicated code into a shared method
+   The code is found in both getUpdates() and getAvailables() in the same class, so it should be made into its own method and then called in each of the mentioned methods.
+
+2. No Question
+
+3. Code Smell: Feature Envy
+   Resolution: Extract method and move it into another class
+   The code is found in multiple methods, but does not rely on code found inside those methods. Rather, it relys on features found in another class.
+
+4. This code could be elimiated by simply using a loop that loops 4 times and contains the previously repeated code. It is important to note that the loop requires an interator other than i and naming the inner and outer loops to avoid the break statement breaking out of the wrong loop.
+
+5. No Question
+
+6. The repeated code found in MavenTest.java file can be consolidated into a separate function using Extract Method or instantiated using a @Before tag if these were the only two tests in the file. However, it is important to not that you cannot use Extract Method on the entire duplicated code section, as there are many variables that are declared in that chunk and used later in the method. It would require some manipulation before you could use Extract Method found in Eclipse. We chose to extract the getVarMaven method to remove some of this duplicate code.
