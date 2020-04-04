@@ -253,11 +253,6 @@ public class Nodes implements Saveable {
         });
     }
 
-    void updateAndTrim() {
-		    updateComputerList();
-		    trimLabels();
-	  }
-
     /**
      * Returns the directory that the nodes are stored in.
      *
